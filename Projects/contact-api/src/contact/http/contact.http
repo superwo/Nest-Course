@@ -1,0 +1,12 @@
+POST http://localhost:3000/contact
+Content-Type: application/json
+
+{
+  "name": "Petrica",
+  "email": "trubo@pascal.it", 
+  "message": "Hi there! This is a test message."
+}
+
+GET http://localhost:3000/contact
+
+GET http://localhost:3000/contact/176442854859
