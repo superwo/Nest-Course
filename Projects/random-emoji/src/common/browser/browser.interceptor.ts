@@ -14,9 +14,9 @@ export class BrowserInterceptor implements NestInterceptor {
     const userAgent = request.headers['user-agent'] || '';
     const browserClient = userAgent.split(' ')[0] || 'Unknown Browser';
     request.headers.browser = browserClient;
-    console.log(
-      `Interceptor manipulated request for browser: ${request.headers.browser}`,
-    );
+    // console.log(
+    //   `Interceptor manipulated request for browser: ${request.headers.browser}`,
+    // );
 
     return next.handle();
   }
