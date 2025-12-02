@@ -1,4 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Post,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -8,5 +14,13 @@ export class AppController {
   @Get()
   getHello() {
     return this.appService.getHello();
+  }
+
+  @Post()
+  createUser(@Body() payload: { email: string }) {
+    if (!payload.email) {
+      throw new BadRequestException();
+    }
+    return payload;
   }
 }
