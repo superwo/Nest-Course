@@ -1,11 +1,6 @@
-import {
-  BadRequestException,
-  Body,
-  Controller,
-  Get,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { CreateUserDto } from './create-user.dto';
 
 @Controller()
 export class AppController {
@@ -17,10 +12,7 @@ export class AppController {
   }
 
   @Post()
-  createUser(@Body() payload: { email: string }) {
-    if (!payload.email) {
-      throw new BadRequestException();
-    }
+  createUser(@Body() payload: CreateUserDto) {
     return payload;
   }
 }
