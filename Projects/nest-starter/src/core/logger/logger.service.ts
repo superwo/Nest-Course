@@ -16,7 +16,20 @@ export class LoggerService implements NestLogger {
       ? combine(
           colorize(),
           timestamp(),
-          printf(({ timestamp, level, context, message, meta }) => {
+          printf((info) => {
+            const {
+              timestamp = '',
+              level = '',
+              context = '',
+              message = '',
+              meta = undefined,
+            } = info as {
+              timestamp?: string;
+              level?: string;
+              context?: string;
+              message?: string;
+              meta?: Record<string, unknown>;
+            };
             return `${timestamp} [${level}] [${context}] ${message} ${
               meta ? JSON.stringify(meta) : ''
             }`;
@@ -29,13 +42,18 @@ export class LoggerService implements NestLogger {
     });
   }
 
-  log(message: string, context?: string, meta?: any) {
+  log(message: string, context?: string, meta?: Record<string, unknown>) {
     this.logger.info(message, { context, meta });
   }
-  error(message: string, trace: string, context?: string, meta?: any) {
+  error(
+    message: string,
+    trace: string,
+    context?: string,
+    meta?: Record<string, unknown>,
+  ) {
     this.logger.error(message, { trace, context, meta });
   }
-  warn(message: string, context?: string, meta?: any) {
+  warn(message: string, context?: string, meta?: Record<string, unknown>) {
     this.logger.warn(message, { context, meta });
   }
   debug(message: string, context?: string) {
