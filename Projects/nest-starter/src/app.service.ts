@@ -15,6 +15,7 @@ export class AppService {
       method: 'getHello',
       status: 'success',
     });
+    this.databaseService.user.findMany();
     return 'Hello World!';
   }
 }
