@@ -10,12 +10,12 @@ export class AppService {
     private readonly databaseService: DatabaseService,
   ) {}
 
-  getHello() {
+  async getHello() {
     this.logger.log('Hello endpoint was called', this.context, {
       method: 'getHello',
       status: 'success',
     });
-    this.databaseService.user.findMany();
+    await this.databaseService.user.findMany();
     return 'Hello World!';
   }
 }
